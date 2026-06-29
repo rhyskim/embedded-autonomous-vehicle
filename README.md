@@ -1,11 +1,11 @@
-# 🚗 Embedded Autonomous Vehicle
+# Embedded Autonomous Vehicle
 
 > **STM32F429 + FreeRTOS** 플랫폼 위에서 동작하는 미로 탈출 자율 주행 로봇 프로젝트입니다.  
 > 초음파·적외선 센서 융합과 PD 제어 알고리즘을 이용해 벽면을 탐색하고, 동적 장애물(로봇청소기)을 실시간으로 회피합니다.
 
 ---
 
-## 📌 프로젝트 개요
+## 프로젝트 개요
 
 | 항목 | 내용 |
 |---|---|
@@ -13,11 +13,11 @@
 | **RTOS** | FreeRTOS v9 (CMSIS-RTOS API) |
 | **개발 환경** | Keil MDK-ARM (µVision 5) |
 | **드라이버** | STM32 HAL (STM32F4xx_HAL_Driver) |
-| **보드** | STM32F429I-EVAL (혹은 호환 보드) |
+| **보드** | STM32F429I-EVAL |
 
 ---
 
-## 🧠 주요 알고리즘
+## 주요 알고리즘
 
 ### 1. 방위각(Azimuth) 기반 경로 탐색
 
@@ -51,7 +51,7 @@ Right_PWM = BASE_PULSE - PD_output
 | `BASE_PULSE` | 19000 | 기본 PWM 듀티 |
 | `IR_DEADZONE` | 100 | 오차 데드존 (진동 방지) |
 
-### 3. 동적 장애물(로봇청소기) 실시간 감지
+### 3. 동적 장애물 실시간 감지
 
 정면 초음파 센서가 반응했을 때, IR 센서의 **변화율(미분)**을 50회(약 500 ms) 동안 추적합니다.  
 변화량이 임계값(`IR_DELTA_TH = 200`)을 초과하면 동적 장애물로 판정하여 **급발진 회피**를 실행합니다.
@@ -73,7 +73,7 @@ if (delta_left > IR_DELTA_TH || delta_right > IR_DELTA_TH)
 
 ---
 
-## 🗂️ 프로젝트 구조
+## 프로젝트 구조
 
 ```
 Lab8_RTOS/
@@ -103,7 +103,7 @@ Lab8_RTOS/
 
 ---
 
-## ⚙️ 하드웨어 구성
+## 하드웨어 구성
 
 | 센서 / 액추에이터 | 핀 / 인터페이스 | 용도 |
 |---|---|---|
@@ -121,7 +121,7 @@ Lab8_RTOS/
 
 ---
 
-## 🔄 FreeRTOS 태스크 구조
+## FreeRTOS 태스크 구조
 
 ```
 vTaskStartScheduler()
@@ -141,7 +141,7 @@ vTaskStartScheduler()
 
 ---
 
-## 🛠️ 빌드 및 플래싱 방법
+## 빌드 및 플래싱 방법
 
 ### 요구사항
 
@@ -173,7 +173,7 @@ UART1 (115200 bps, 8N1)에 시리얼 터미널을 연결하면 실시간 상태 
 
 ---
 
-## 🔧 주요 튜닝 파라미터
+## 주요 튜닝 파라미터
 
 `Src/main.c` 상단의 `#define` 값을 조정하여 주행 특성을 튜닝할 수 있습니다.
 
@@ -192,15 +192,7 @@ UART1 (115200 bps, 8N1)에 시리얼 터미널을 연결하면 실시간 상태 
 
 ---
 
-## 📄 라이선스
+## 라이선스
 
 - **FreeRTOS** — MIT License (Copyright Amazon.com, Inc. or its affiliates)
 - **STM32 HAL / BSP** — BSD 3-Clause License (Copyright STMicroelectronics)
-- **Application Code** — 학술 목적 프로젝트 (2026년 1학기 임베디드시스템 과목)
-
----
-
-## 👤 Author
-
-**202002510 송재현**  
-임베디드시스템 (ES01) — 2026년 1학기
